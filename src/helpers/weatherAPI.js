@@ -1,21 +1,6 @@
-// Remova os comentários a medida que for implementando as funções
 const token = import.meta.env.VITE_TOKEN;
 
-// function extrairDados(retorno) {
-//   const { name } = retorno.location;
-//   const { country } = retorno.location;
-//   const temp = retorno.current.temp_c;
-//   const condition = retorno.current.condition.text;
-//   const { icon } = retorno.current.condition;
-
-//   return {
-//     name,
-//     country,
-//     temp,
-//     condition,
-//     icon,
-//   };
-// }
+// Remova os comentários a medida que for implementando as funções
 
 async function searchCities(term) {
   const link = `http://api.weatherapi.com/v1/search.json?lang=pt&key=${token}&q=${term}`;
@@ -58,8 +43,8 @@ async function getWeatherByCity(cityURL) {
       url,
     };
   } catch (error) {
-    console.error(`Houve um erro ao obter os dados do clima 
-    para a cidade ${cityURL}:`, error);
+    console.error(`Houve um erro ao obter os 
+    dados do clima para a cidade ${cityURL}:`, error);
     throw error;
   }
 }
