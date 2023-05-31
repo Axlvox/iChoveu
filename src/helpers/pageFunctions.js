@@ -77,9 +77,9 @@ export function showForecast(forecastList) {
  * Recebe um objeto com as informações de uma cidade e retorna um elemento HTML
  */
 export function createCityElement(cityInfo) {
-  const { name, country, temp, condition, icon /* , url */ } = cityInfo;
-
+  const { name, country, temp, condition, icon /* url */ } = cityInfo;
   const cityElement = createElement('li', 'city');
+  cityElement.classList.add('city');
 
   const headingElement = createElement('div', 'city-heading');
   const nameElement = createElement('h2', 'city-name', name);
@@ -103,7 +103,6 @@ export function createCityElement(cityInfo) {
 
   cityElement.appendChild(headingElement);
   cityElement.appendChild(infoContainer);
-
   return cityElement;
 }
 
@@ -125,10 +124,13 @@ export async function handleSearch(event) {
       Promise.all(cities.map((city) => getWeatherByCity(city.url)));
 
       weatherArray.forEach((weatherData) => {
+        const cityEl = createCityElement(weatherData);
+        document.getElementById('cities').appendChild(cityEl);
+      });
+
+      weatherArray.forEach((weatherData) => {
         console.log(weatherData);
       });
-    } else {
-      console.log('Nenhum resultado de cidade encontrado');
     }
   } catch (error) {
     console.error('Ocorreu um erro na busca por cidades:', error);
